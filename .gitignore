@@ -1,0 +1,56 @@
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+*.env
+
+# Database
+server/storage/*.db
+server/storage/*.db-journal
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+frontend/dist/
+frontend/build/
+collector/dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
+.vscode/
+
+# Temp files
+*.tmp
+*.temp
+
+# Uploaded documents (user data)
+server/storage/documents/
+server/storage/vector-cache/
+collector/hotdir/
+collector/outputs/
+
+# Test coverage
+coverage/
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Crawl service outputs
+crawl_outputs/
