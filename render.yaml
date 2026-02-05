@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: bot-m
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SERVER_PORT
+        value: 3001
+      - key: STORAGE_DIR
+        value: /app/server/storage
+      - key: VECTOR_DB
+        value: lancedb
+      - key: EMBEDDING_MODEL_PREF
+        value: native
+      - key: LLM_PROVIDER
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+    disk:
+      name: bot-m-storage
+      mountPath: /app/server/storage
+      sizeGB: 1
