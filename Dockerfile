@@ -1,6 +1,10 @@
 # BOT_M Production Dockerfile
 # Full deployment with Crawl4AI integration
+# Build Version: 2.0.1 - Forces rebuild
 FROM node:20-slim
+
+# Cache bust to force fresh build
+ARG CACHE_BUST=2
 
 # Install ALL required system dependencies
 # - Python for Crawl4AI
