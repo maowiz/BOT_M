@@ -1,8 +1,9 @@
 # BOT_M Production Dockerfile
-FROM node:20-alpine
+# Use Debian-based image for Prisma OpenSSL compatibility (libssl.so.1.1)
+FROM node:20-slim
 
 # Install build dependencies
-RUN apk add --no-cache python3 make g++ git
+RUN apt-get update && apt-get install -y python3 make g++ git openssl ca-certificates && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -20,7 +21,7 @@ RUN cd frontend && yarn install
 # Copy source code
 COPY . .
 
-# Generate Prisma client
+# Generate Prisma client for linux target
 RUN cd server && npx prisma generate
 
 # Build frontend
