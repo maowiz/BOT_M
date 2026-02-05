@@ -2,7 +2,11 @@
 # Use Debian-based image for Prisma OpenSSL compatibility (libssl.so.1.1)
 FROM node:20-slim
 
-# Install build dependencies and system libraries for collector/puppeteer
+# Install ALL required system dependencies
+# - Puppeteer/Chromium deps: libnss3, libatk, libcups2, etc.
+# - Sharp (image processing): libvips
+# - Tesseract (OCR): tesseract-ocr
+# - General build: python3, make, g++
 RUN apt-get update && apt-get install -y \
     python3 \
     make \
@@ -13,6 +17,7 @@ RUN apt-get update && apt-get install -y \
     wget \
     curl \
     gnupg \
+    # Puppeteer/Chromium dependencies
     libglib2.0-0 \
     libnss3 \
     libnspr4 \
@@ -30,6 +35,12 @@ RUN apt-get update && apt-get install -y \
     libasound2 \
     libpango-1.0-0 \
     libcairo2 \
+    libatspi2.0-0 \
+    libgtk-3-0 \
+    # Sharp image processing dependencies
+    libvips-dev \
+    # Tesseract OCR
+    tesseract-ocr \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
