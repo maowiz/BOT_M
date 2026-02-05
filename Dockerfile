@@ -27,7 +27,7 @@ RUN cd server && npx prisma generate
 RUN cd frontend && yarn build
 
 # Copy built frontend to server/public (where server expects it)
-RUN cp -r frontend/dist/* server/public/
+RUN mkdir -p server/public && cp -r frontend/dist/* server/public/
 
 # Create storage directories
 RUN mkdir -p server/storage/documents server/storage/vector-cache server/storage/lancedb
