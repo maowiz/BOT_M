@@ -119,15 +119,12 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
     navigate(paths.home());
   };
 
-  // Update navigation buttons on completed survey screen
+  // CRITICAL: Hide BOTH navigation buttons on completed survey screen
+  // and provide direct dashboard button instead
   useEffect(() => {
     if (!!window?.localStorage?.getItem(COMPLETE_QUESTIONNAIRE)) {
       setBackBtn({ showing: false, disabled: true, onClick: () => null });
-      setForwardBtn({
-        showing: true,
-        disabled: false,
-        onClick: () => navigate(paths.home())
-      });
+      setForwardBtn({ showing: false, disabled: true, onClick: () => null });
     }
   }, []);
 
@@ -140,12 +137,12 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
             <p className="text-white text-lg">
               {t("onboarding.survey.thankYou")}
             </p>
-            <a
-              href={paths.mailToMintplex()}
-              className="text-sky-400 underline text-xs"
+            <button
+              onClick={() => navigate(paths.home())}
+              className="mt-6 px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg text-white font-semibold hover:opacity-90 transition-opacity"
             >
-              team@mintplexlabs.com
-            </a>
+              Go to Dashboard →
+            </button>
           </div>
         </div>
       </div>
