@@ -119,10 +119,15 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
     navigate(paths.home());
   };
 
-  // Hide back button on completed survey screen
+  // Update navigation buttons on completed survey screen
   useEffect(() => {
     if (!!window?.localStorage?.getItem(COMPLETE_QUESTIONNAIRE)) {
       setBackBtn({ showing: false, disabled: true, onClick: () => null });
+      setForwardBtn({
+        showing: true,
+        disabled: false,
+        onClick: () => navigate(paths.home())
+      });
     }
   }, []);
 
@@ -176,8 +181,8 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
           <div className="mt-2 gap-y-3 flex flex-col">
             <label
               className={`border-solid transition-all duration-300 w-full h-11 p-2.5 rounded-lg flex justify-start items-center gap-2.5 cursor-pointer border ${selectedOption === "job"
-                  ? "border-theme-sidebar-item-workspace-active bg-theme-bg-secondary"
-                  : "border-theme-sidebar-border"
+                ? "border-theme-sidebar-item-workspace-active bg-theme-bg-secondary"
+                : "border-theme-sidebar-border"
                 } hover:border-theme-sidebar-border hover:bg-theme-bg-secondary`}
             >
               <input
@@ -190,8 +195,8 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
               />
               <div
                 className={`w-4 h-4 rounded-full border-2 border-theme-sidebar-border mr-2 ${selectedOption === "job"
-                    ? "bg-[var(--theme-sidebar-item-workspace-active)]"
-                    : ""
+                  ? "bg-[var(--theme-sidebar-item-workspace-active)]"
+                  : ""
                   }`}
               ></div>
               <div className="text-theme-text-primary text-sm font-medium font-['Plus Jakarta Sans'] leading-tight">
@@ -200,8 +205,8 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
             </label>
             <label
               className={`border-solid transition-all duration-300 w-full h-11 p-2.5 rounded-lg flex justify-start items-center gap-2.5 cursor-pointer border-[1px] ${selectedOption === "personal"
-                  ? "border-theme-sidebar-item-workspace-active bg-theme-bg-secondary"
-                  : "border-theme-sidebar-border"
+                ? "border-theme-sidebar-item-workspace-active bg-theme-bg-secondary"
+                : "border-theme-sidebar-border"
                 } hover:border-theme-sidebar-border hover:bg-theme-bg-secondary`}
             >
               <input
@@ -214,8 +219,8 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
               />
               <div
                 className={`w-4 h-4 rounded-full border-2 border-theme-sidebar-border mr-2 ${selectedOption === "personal"
-                    ? "bg-[var(--theme-sidebar-item-workspace-active)]"
-                    : ""
+                  ? "bg-[var(--theme-sidebar-item-workspace-active)]"
+                  : ""
                   }`}
               ></div>
               <div className="text-theme-text-primary text-sm font-medium font-['Plus Jakarta Sans'] leading-tight">
@@ -224,8 +229,8 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
             </label>
             <label
               className={`border-solid transition-all duration-300 w-full h-11 p-2.5 rounded-lg flex justify-start items-center gap-2.5 cursor-pointer border-[1px] ${selectedOption === "other"
-                  ? "border-theme-sidebar-item-workspace-active bg-theme-bg-secondary"
-                  : "border-theme-sidebar-border"
+                ? "border-theme-sidebar-item-workspace-active bg-theme-bg-secondary"
+                : "border-theme-sidebar-border"
                 } hover:border-theme-sidebar-border hover:bg-theme-bg-secondary`}
             >
               <input
@@ -238,8 +243,8 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
               />
               <div
                 className={`w-4 h-4 rounded-full border-2 border-theme-sidebar-border mr-2 ${selectedOption === "other"
-                    ? "bg-[var(--theme-sidebar-item-workspace-active)]"
-                    : ""
+                  ? "bg-[var(--theme-sidebar-item-workspace-active)]"
+                  : ""
                   }`}
               ></div>
               <div className="text-theme-text-primary text-sm font-medium font-['Plus Jakarta Sans'] leading-tight">
